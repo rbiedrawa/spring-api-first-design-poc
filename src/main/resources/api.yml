@@ -1,0 +1,154 @@
+openapi: 3.0.2
+servers:
+  - url: http://localhost:8080
+  - url: http://uat
+info:
+  description: This is a sample Todo application based on the OpenAPI 3.0 specification.
+  version: 1.0.0
+  title: Todo Service
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: yourEmail@com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+tags:
+  - description: Todos
+    name: todos
+paths:
+  /todos:
+    get:
+      description: |
+        The list of todos
+      operationId: listTodos
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Todo'
+                type: array
+          description: successful operation
+      summary: List the available todos
+      tags:
+        - todos
+    post:
+      description: Add a new todo
+      operationId: createTodo
+      requestBody:
+        description: Add a new todo
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTodo'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+          description: successful operation
+        '400':
+          description: bad request
+      summary: Create a todo
+      tags:
+        - todos
+  /todos/{todoId}:
+    delete:
+      description: |
+        Delete the todo
+      operationId: deleteTodo
+      parameters:
+        - description: The todo identifier
+          explode: false
+          in: path
+          name: todoId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+      responses:
+        '204':
+          description: |
+            No content.
+        '404':
+          description: |
+            Todo not found
+      summary: Delete the todo
+      tags:
+        - todos
+    put:
+      description: |
+        Update an existing todo
+      operationId: updateTodo
+      parameters:
+        - description: The todo identifier
+          explode: false
+          in: path
+          name: todoId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+      requestBody:
+        description: Update an existing todo
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Todo'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+          description: successful operation
+        '404':
+          description: |
+            Todo not found
+      summary: Update the todo
+      tags:
+        - todos
+components:
+  schemas:
+    Todo:
+      example:
+        id: 1
+        title: My first todo
+        create_date: '2022-01-01T00:00:00.000Z'
+      properties:
+        id:
+          description: The todo identifier
+          format: int64
+          type: integer
+        title:
+          description: The todo title
+          type: string
+        create_date:
+          description: The todo creation date
+          format: date-time
+          type: string
+      required:
+        - create_date
+        - id
+        - title
+      type: object
+      xml:
+        name: Todo
+    NewTodo:
+      example:
+        title: My first todo
+      properties:
+        title:
+          description: The todo title
+          type: string
+      required:
+        - id
+      type: object
+      xml:
+        name: NewTodo
