@@ -1,0 +1,20 @@
+management:
+  endpoints:
+    web.exposure.include: "*"
+
+# An example of how to configure swagger ui to display groups and request duration.
+# Please note that we're not serving open api spec from `src/main/resources/api.yml` file.
+springdoc:
+  api-docs:
+    enabled: true
+  show-actuator: true
+  group-configs[0]:
+    paths-to-match: "/todos/**"
+    group: "todos"
+  group-configs[1]:
+    paths-to-match: "/actuator/**"
+    group: "actuator"
+  swagger-ui:
+    enabled: true
+    display-request-duration: true
+    groups-order: DESC
