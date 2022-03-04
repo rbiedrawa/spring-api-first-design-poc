@@ -27,15 +27,15 @@ Contract first means that we're developing a specification before we begin imple
     ```
 3. Investigate generated models and controllers interfaces under `build/generated/sources/src/main/java` directory
 4. Check [TodoController](./src/main/java/com/rbiedrawa/app/controllers/TodoController.java) implementation
-5. Add new endpoint or model to the service.
+5. Add new endpoint or model to the service
    1. Update OpenAPI spec in [api.yml](./src/main/resources/api.yml)
    2. Generate the new models or controllers by running again`./gradlew openApiGenerate`
    3. Implement any new features 
-6. Start Todo application
+6. Start **Todo Service**
    ```shell
-   ./gradlew clean bootRun
+   ./gradlew bootRun
    ```
-7. Open [Swagger UI](http://localhost:8080/swagger-ui.html) page and play with API:)
+7. Open [Swagger UI](http://localhost:8080/swagger-ui.html) page and play with API 😉
    ![grouped-api.png](./docs/img/grouped-api.png)
 
 ## Useful tools
