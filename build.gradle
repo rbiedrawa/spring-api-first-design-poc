@@ -2,11 +2,15 @@ plugins {
     id 'org.springframework.boot' version '2.6.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+
+    id "org.openapi.generator" version "5.4.0"
 }
 
 group = 'com.rbiedrawa'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+apply from: 'gradle/openApiGenerator.gradle'
 
 configurations {
     compileOnly {
@@ -21,6 +25,8 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.6'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
