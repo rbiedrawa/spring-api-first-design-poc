@@ -14,11 +14,11 @@ Contract first means that we're developing a specification before we begin imple
 
 ## Getting Started
 
-### Prerequisites
+### Prerequisites:
 
 * Java 11
 
-### Usage
+### Usage:
 
 1. Check **Todo Service** OpenAPI specification. Open [src/main/resources/api.yml](./src/main/resources/api.yml)
 2. Generate Spring controllers and models from the specification using Gradle plugin
